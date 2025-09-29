@@ -11,10 +11,11 @@
 </div>
 
   {{-- menu item --}}
-  <div class="overflow-y-auto mx-auto w-full flex-1">
+  <div class="overflow-y-auto mx-auto w-full flex-1 grid grid-cols-5 gap-5 p-2">
   @foreach($menuItems as $item)
-  <x-item-component name="{{$item->name}}" price="{{ $item->price }}" image="{{ asset('storage/' . $item->image) }}"/>
+  <x-item-component :item="$item" name="{{$item->name}}" price="{{ $item->price }}" image="{{ asset('storage/' . $item->image) }}"/>
   @endforeach
+ 
   </div>
 </div>
 

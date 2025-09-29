@@ -55,25 +55,42 @@ class MenuItemsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(MenuItem $menuItem)
     {
-        //
+     
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(MenuItem $menuItem)
     {
-        //
+            $categories = Category::all();
+
+           return view('admin.menuitem.edit', compact('menuItem', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, MenuItem $menuItem)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'string|required|max:255',
+            'price' => 'required|numeric|min:1',
+            'category_id' => 'required|exists:categories,id',
+            'image'  => 'nullable|image|mimes:jpg,png,jpeg,gif,jfif|max:2048',
+        ]);
+
+        if ($request->hasFile('image'))
+        {
+            $path = $request->file('image')->store('menu-items', 'public');
+            $validated['image'] = $path;
+        }
+
+        $menuItem->update($validated);
+
+        return redirect()->route('admin.menuitem')->with('success', 'Item Updated Successfully!');
     }
 
     /**

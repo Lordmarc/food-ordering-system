@@ -30,6 +30,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/menu-item/create', [MenuItemsController::class, 'create'])->name('admin.show.item');
     Route::post('/menu-item', [MenuItemsController::class, 'store'])->name('admin.store.item');
     Route::post('/category', [CategoryController::class, 'store'])->name('admin.store.category');
+    Route::post('/menu-item/{menuItem}', [MenuItemsController::class, 'update'])->name('admin.update.item');
+    Route::get('/menu-item/{menuItem}/edit', [MenuItemsController::class, 'edit'])->name('admin.edit.item');
 });
 
 Route::middleware('auth')->controller(CustomerController::class)->group(function () {
