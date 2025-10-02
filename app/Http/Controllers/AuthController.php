@@ -34,7 +34,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('user.index')->with('success', 'Account created successfully!');
+        return redirect()->route('customer.index')->with('success', 'Account created successfully!');
     }
 
     public function login (Request $request)

@@ -12,7 +12,12 @@
     <h2 class="font-bold text-xl mr-auto">FoodHUB</h2>
       <div class="flex items-center gap-2">
         @auth
-        <p>Hi there, {{ auth()->user()->name }}
+        <div class="flex items-center gap-2">
+        <p>Hi there, {{ auth()->user()->name }}</p>
+        <i class="fa-solid fa-cart-shopping text-slate-500"></i>
+        </div>
+        <div class="divider w-[2px] h-6 bg-gray-300 mx-2">
+        </div>
         <form action="{{ route('logout') }}" method="POST">
         @csrf
           <button class="bg-red-200 px-2 py-1 rounded font-semibold">Logout</button>
@@ -30,7 +35,7 @@
     </nav>
   </header>
 
-  <main>
+  <main class="full p-5 rounded shadow-sm">
     
     {{ $slot }}
   </main>
