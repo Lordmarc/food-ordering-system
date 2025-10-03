@@ -59,3 +59,9 @@
         @apply absolute bottom-0 left-1/2 transform -translate-x-1/2  bg-amber-500 text-white py-3 w-20 rounded-full text-xl hover:bg-amber-600 cursor-pointer;
     }
 }
+
+/* Cart style */
+
+.minusQty, .addQty {
+    @apply bg-amber-500 p-2 cursor-pointer transform ease-in-out duration-75 hover:bg-amber-600 text-white rounded
+}

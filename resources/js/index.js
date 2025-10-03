@@ -43,9 +43,67 @@ document.addEventListener("DOMContentLoaded", () => {
         else{
             cart.push(item)
         }
+ 
 
         updateItemCount();
+        renderCart();
+    }
 
+    function renderCart()
+    {
+        const cartContainer = document.querySelector('.item-container');
+       
+
+        cartContainer.innerHTML = '';
+        if(cart.length === 0){
+              cartContainer.innerHTML = `<p>Your cart is empty.</p>`;
+              updateItemCount();
+              return;
+           
+        }
+            cart.forEach((item, index) => {
+            let div = document.createElement('div');
+
+            let totalPrice = item.price * item.quantity;
+            div.classList.add("flex", "justify-between", "items-center", 'border-b', "py-2");
+            div.innerHTML = `
+               
+                <img src="${item.image}" class="w-12 h-12 rounded">
+                <span>${item.name}</span>
+                <span class="item-price text-md text-slate-500"><i class="fa-solid fa-peso-sign font-light text-md"></i>${totalPrice}</span>
+                <button class="minusQty"><i class="fa-solid fa-minus"></i></button>
+                <span>${item.quantity}</span>
+                <button class="addQty"><i class="fa-solid fa-plus"></i></button>
+            `;
+            cartContainer.appendChild(div);
+
+            const minusQty = div.querySelector('.minusQty');
+            const addQty = div.querySelector('.addQty');
+    
+
+     
+
+            minusQty.addEventListener("click", () => {
+                if(item.quantity > 1){
+                    item.quantity -= 1;
+                }else {
+                    cart.splice(index, 1);
+                    
+                }
+                renderCart();
+            });
+
+            addQty.addEventListener('click', () => {
+                item.quantity += 1;
+        
+                renderCart();
+            });
+          
+        });
+
+        
+  updateItemCount();
+       
     }
 
     function updateItemCount()
@@ -56,11 +114,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // pop up cart modal
     const cartButton = document.querySelector('.cart');
+    const closeBtn = document.getElementById('close-cart')
     
+    const cartModal = document.getElementById('cart-popup');
 
-    cartButton.addEventListener('click', () => {
-        const cartModal = document.getElementById('cart-popup');
+    cartButton.addEventListener('click',toggleCart)
 
+    closeBtn.addEventListener('click', toggleCart)
+
+    function toggleCart() {
         cartModal.classList.toggle('hidden');
-    })
+    }
+
 });

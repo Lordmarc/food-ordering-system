@@ -14,7 +14,7 @@
         @auth
         <div class="flex items-center gap-2">
         <p>Hi there, {{ auth()->user()->name }}</p>
-        <div class="cart relative">
+        <div class="cart relative cursor-pointer hover:scale-105">
         <i class="fa-solid fa-cart-shopping text-slate-500 text-2xl"></i>
         <div class="absolute -top-3 -right-2 bg-amber-500 rounded-full flex justify-center p-3 items-center h-5 w-5">
          <span class="item-count text-white font-bold">0</span>
@@ -52,8 +52,11 @@
     <div class="overlay absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-sm"></div>
     
     <!-- Cart Box -->
-    <div class="pop-up-cart relative bg-white p-5 rounded-lg shadow-lg z-10 w-80">
+    <div class="pop-up-cart container relative bg-white p-5 rounded-lg shadow-lg min-w-sm  z-10 w-96">
         <h2 class="text-lg font-bold mb-4">Your Cart</h2>
+        <div class="item-container mb-5"> 
+
+        </div>
         <button id="checkout-btn" class="bg-amber-500 text-white px-4 py-2 rounded">Proceed to checkout</button>
         <button id="close-cart" class="absolute top-2 right-2 text-gray-600">✖</button>
     </div>
