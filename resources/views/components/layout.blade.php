@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>FoodHUB</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -9,7 +10,10 @@
 </head>
 <body class="bg-gray-100">
   <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h2 class="font-bold text-xl mr-auto">FoodHUB</h2>
+  <div class="bg-slate-200 p-2">
+    <h2 class="font-bold text-xl mr-auto">Food<span class="text-amber-500">HUB</span></h2>
+  </div>
+    
       <div class="flex items-center gap-2">
         @auth
         <div class="flex items-center gap-2">
@@ -62,11 +66,31 @@
     </div>
 </div>
 
+<footer class="bg-amber-400 py-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 mb-2 gap-6">
 
-
-    
-    
+    <div>
+      <h2 class="font-bold text-xl mr-auto">FoodHUB</h2>
+      <p class="text-sm">Freshly cooked meals with love</p>
     </div>
+
+    <div>
+      <h3 class="font-semibold mb-2">Visit Us</h3>
+      <p class="text-sm">123 Jan Xa Tabby, Taguig City</p>
+      <p class="text-sm">Open Daily: 8 AM - 8 PM</p>
+    </div>
+
+    <div>
+      <h3 class="font-semibold mb-2">Get in Touch</h3>
+      <p class="text-sm"><i class="fa-solid fa-phone"></i> 09123 456 7890</p>
+      <p class="text-sm"><i class="fa-solid fa-envelope"></i> hello@foodhub.com</p>
+    </div>
+
+  </div>
+  <div class="text-center text-sm border-t border-[#3e2a1c] pt-4">
+   © 2025 FoodHUB Made with ❤️ in the Philippines.
+  </div>
+</footer>
   @stack('scripts')
 </body>
 </html>

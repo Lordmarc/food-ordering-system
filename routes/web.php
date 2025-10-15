@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuItemsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,7 +22,7 @@ Route::post('/login', 'login')->name('login');
 Route::post('/register', 'register')->name('register');
 });
 
-
+// ADMIN
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
@@ -30,10 +31,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/menu-item/create', [MenuItemsController::class, 'create'])->name('admin.show.item');
     Route::post('/menu-item', [MenuItemsController::class, 'store'])->name('admin.store.item');
     Route::post('/category', [CategoryController::class, 'store'])->name('admin.store.category');
+    Route::get('/orders', [OrderController::class, 'index'])->name('admin.order');
     Route::post('/menu-item/{menuItem}', [MenuItemsController::class, 'update'])->name('admin.update.item');
     Route::get('/menu-item/{menuItem}/edit', [MenuItemsController::class, 'edit'])->name('admin.edit.item');
+    Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.updateStatus');;
+});
+// CUSTOMER
+Route::middleware('auth')->group(function () {
+    Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.index');
+    Route::post('/checkout', [OrderController::class, 'store'])->name('customer.store');
 });
 
-Route::middleware('auth')->controller(CustomerController::class)->group(function () {
-    Route::get('/fos', 'index')->name('customer.index');
-});

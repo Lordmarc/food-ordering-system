@@ -1,5 +1,5 @@
 <x-admin-layout>
-  <div class="containe mx-auto p-6 bg-white h-full">
+  <div class="container mx-auto p-6 bg-white h-full">
   <h2 class="text-gray-700 text-3xl mb-5">Categories</h2>
   <div class="overflow-y-auto">
   <table class="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">

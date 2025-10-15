@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let cart = [];
 
+    loadCart();
+    renderCart();
+    updateItemCount();
+
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
             const item = {
@@ -28,7 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 image: button.dataset.image,
                 quantity: 1
             };
+            
             addToCart(item);
+            saveCart();
         });
     });
 
@@ -52,9 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderCart()
     {
         const cartContainer = document.querySelector('.item-container');
-       
+
+        let overAllPrice = 0;
 
         cartContainer.innerHTML = '';
+
+
         if(cart.length === 0){
               cartContainer.innerHTML = `<p>Your cart is empty.</p>`;
               updateItemCount();
@@ -62,11 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
            
         }
             cart.forEach((item, index) => {
-            let div = document.createElement('div');
+            let eachItem = document.createElement('div');
+  
 
             let totalPrice = item.price * item.quantity;
-            div.classList.add("flex", "justify-between", "items-center", 'border-b', "py-2");
-            div.innerHTML = `
+     
+
+            overAllPrice += totalPrice;
+
+            eachItem.classList.add("flex", "justify-between", "items-center", 'border-b', "py-2");
+            eachItem.innerHTML = `
                
                 <img src="${item.image}" class="w-12 h-12 rounded">
                 <span>${item.name}</span>
@@ -75,10 +89,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span>${item.quantity}</span>
                 <button class="addQty"><i class="fa-solid fa-plus"></i></button>
             `;
-            cartContainer.appendChild(div);
 
-            const minusQty = div.querySelector('.minusQty');
-            const addQty = div.querySelector('.addQty');
+            
+                
+            cartContainer.appendChild(eachItem);
+         
+
+            const minusQty = eachItem.querySelector('.minusQty');
+            const addQty = eachItem.querySelector('.addQty');
     
 
      
@@ -90,19 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     cart.splice(index, 1);
                     
                 }
+                saveCart();
                 renderCart();
             });
 
             addQty.addEventListener('click', () => {
                 item.quantity += 1;
-        
+                saveCart();
                 renderCart();
             });
           
         });
+            const totalPriceAllItem = document.createElement('div');
 
-        
-  updateItemCount();
+            totalPriceAllItem.classList.add('flex', 'justify-between', 'items-center', 'py-2');
+            totalPriceAllItem.innerHTML = `
+                <span>Total:</span>
+                <span><i class="fa-solid fa-peso-sign"></i>${overAllPrice}</span>
+            `;
+
+            cartContainer.appendChild(totalPriceAllItem);
+
+            updateItemCount();
        
     }
 
@@ -126,4 +153,40 @@ document.addEventListener("DOMContentLoaded", () => {
         cartModal.classList.toggle('hidden');
     }
 
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function loadCart() {
+        const saved = localStorage.getItem('cart');
+        if (saved) cart = JSON.parse(saved);
+    }
+
+
+    // checkout function
+
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    checkoutBtn.addEventListener('click', () => {
+        saveCart();
+        console.log('clicked!');
+        fetch('/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                cart: cart
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.message);
+            localStorage.removeItem('cart');
+            cart = [];
+            renderCart();
+        })
+        .catch(err => console.err(err));
+    })
 });
