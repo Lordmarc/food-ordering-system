@@ -14,10 +14,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $activeOrders = Order::where('status', '!=', 'completed')->get();
+        $completedOrders = Order::where('status', 'completed')->get();
         $statuses = Order::getStatuses();
 
-        return view('admin.order.index', compact('orders', 'statuses'));
+        return view('admin.order.index', compact('activeOrders', 'completedOrders', 'statuses'));
     }
 
     /**
@@ -85,15 +86,16 @@ class OrderController extends Controller
         //
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStatus(Request $request, Order $order)
     {
-        $order = Order::findOrFail($id);
-        $order->status = $request->input('status');
-        $order->save();
+        $request->validate([
+            'status' => 'required|in:pending,preparing,ready,completed,cancelled'
+        ]);
+
+        $order->update(['status' => $request->status]);
 
         return response()->json([
             'message' => 'Order status updated successfully!',
-            'order'   => $order
         ]);
     }
 }

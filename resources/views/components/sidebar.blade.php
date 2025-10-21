@@ -46,7 +46,7 @@
   </div>
 </div>
 
-<a href="" class="item-nav">Orders</a>
+<a href="{{ route('admin.order') }}" class="item-nav">Orders</a>
 </div>
 
 </div>

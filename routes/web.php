@@ -34,7 +34,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.order');
     Route::post('/menu-item/{menuItem}', [MenuItemsController::class, 'update'])->name('admin.update.item');
     Route::get('/menu-item/{menuItem}/edit', [MenuItemsController::class, 'edit'])->name('admin.edit.item');
-    Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.updateStatus');;
+    Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('admin.updateStatus');;
 });
 // CUSTOMER
 Route::middleware('auth')->group(function () {

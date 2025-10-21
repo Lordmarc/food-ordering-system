@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     checkoutBtn.addEventListener('click', () => {
         saveCart();
+        toggleCart();
         console.log('clicked!');
         fetch('/checkout', {
             method: 'POST',
@@ -189,4 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => console.err(err));
     })
+
+    // 
+
+  
 });
