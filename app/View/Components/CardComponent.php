@@ -10,10 +10,12 @@ class CardComponent extends Component
 {
     public $title;
     public $amount;
-    public function __construct($title, $amount)
+    public $id;
+    public function __construct($title, $amount, $id)
     {
         $this->title = $title;
         $this->amount = $amount;
+        $this->id = $id;
     }
 
     /**

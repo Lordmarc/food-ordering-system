@@ -54,37 +54,7 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order placed successfully!']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 
     public function updateStatus(Request $request, Order $order)
     {
@@ -96,6 +66,37 @@ class OrderController extends Controller
 
         return response()->json([
             'message' => 'Order status updated successfully!',
+        ]);
+    }
+
+    // customer order
+
+    public function customerOrder()
+    {
+        $user = auth()->user();
+        $orders = $user->orders()->with('items.menuItem')->orderBy('created_at', 'desc')->get();
+        $pendingOrders = $user->orders()->where('status', 'pending')->orderBy('created_at', 'desc')->get();
+        $preparingOrders = $user->orders()->where('status', 'preparing')->orderBy('created_at', 'desc')->get();
+        $readyOrders = $user->orders()->where('status', 'ready')->orderBy('created_at', 'desc')->get();
+        $completedOrders = $user->orders()->where('status', 'completed')->orderBy('created_at', 'desc')->get();
+
+        return view('customer.order.index', compact('orders', 'pendingOrders', 'preparingOrders', 'readyOrders', 'completedOrders'));
+    }
+
+    public function fetchOrders()
+    {
+        $user = auth()->user();
+        $orders = $user->orders()
+        ->with('items.menuItem')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+          return response()->json([
+            'orders' => $orders,
+            'pendingOrders' => $orders->where('status', 'pending')->values(),
+            'preparingOrders' => $orders->where('status', 'preparing')->values(),
+            'readyOrders' => $orders->where('status', 'ready')->values(),
+            'completedOrders' => $orders->where('status', 'completed')->values(),
         ]);
     }
 }

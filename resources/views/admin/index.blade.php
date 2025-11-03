@@ -1,14 +1,16 @@
 <x-admin-layout>
+<div id="dashboard" data-stats-url="{{ route('admin.dashboard.stats') }}"></div>
+
   <div class="container mx-auto p-6 bg-white h-full">
     {{-- total widgets --}}
     <div class="grid grid-cols-4 gap-2">
-       <x-card-component title="Total Revenue" amount="P 1,2000" />
+       <x-card-component title="Total Revenue" amount="P {{ $totalRevenues }}" id="revenue-card" />
  
-       <x-card-component title="Total Orders" amount="100" />
+       <x-card-component title="Total Orders" amount="{{ $totalOrders }}" id="orders-card" />
       
-       <x-card-component title="Total Menu Items" amount="500" />
+       <x-card-component title="Total Menu Items" amount="{{ $totalMenuItems }}" id="menu-card" />
        
-       <x-card-component title="Total Customers" amount="150" />
+       <x-card-component title="Total Customers" amount="{{ $totalCustomers }}" id="customers-card" />
         
     </div>
 
@@ -32,3 +34,5 @@
   
   </div>
 </x-admin-layout>
+
+ 

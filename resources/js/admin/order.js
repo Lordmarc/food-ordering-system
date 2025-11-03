@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const updateStatusBtn = document.querySelectorAll(".update-status");
     console.log(updateStatusBtn);

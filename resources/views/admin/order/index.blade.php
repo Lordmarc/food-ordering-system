@@ -17,7 +17,7 @@
                 <th>Total</th>
                 <th>Status</th>
                 <th>Action</th>
-            </tr>
+            </tr> 
         </thead>
         <tbody>
         @foreach($activeOrders as $order )

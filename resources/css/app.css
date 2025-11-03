@@ -71,3 +71,25 @@
 .btn-tab {
     @apply rounded px-3 py-2 cursor-pointer w-52
 }
+
+/* Profile Setting Style */
+
+.hover-setting {
+    @apply relative  top-18 right-30 p-4 text-white font-semibold;
+}
+
+.arrow-up {
+    @apply w-0 h-0 border-l-[10px] border-r-[10px] border-b-[10px] border-l-transparent border-r-transparent border-b-amber-500 mx-auto ;
+}
+
+.settings {
+    @apply flex flex-col bg-amber-500 py-4 w-40
+}
+
+.profile-links {
+    @apply hover:bg-amber-400 px-6;
+}
+
+.order-status-button {
+    @apply w-full h-full px-2 py-3 cursor-pointer transition-all ease-in-out duration-75;
+}
