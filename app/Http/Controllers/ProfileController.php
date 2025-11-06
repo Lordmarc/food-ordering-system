@@ -10,6 +10,7 @@ class ProfileController extends Controller
     public function index() 
     {
         $user = auth()->user();
+        
 
         return view('customer.profile.index', compact('user'));
     }

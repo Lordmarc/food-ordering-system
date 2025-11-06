@@ -46,5 +46,22 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [OrderController::class, 'store'])->name('customer.store');
     Route::get('/customer/order', [OrderController::class, 'customerOrder'])->name('customer.order');
     Route::get('/customer/orderlist', [OrderController::class, 'fetchOrders'])->name('customer.fetch.orders');
+    Route::get('/customer/profile', [ProfileController::class, 'index'])->name('customer.profile');
+    Route::get('/customer/profile', function() {
+        return view('customer.partials.profile');
+    })->name('customer.profile');
+
+    Route::get('/customer/address', function() {
+        return view('customer.partials.address');
+    })->name('customer.address');
+
+    Route::get('/customer/password', function() {
+        return view('customer.partials.password');
+    })->name('customer.password');
+
+    Route::get('/customer/orders', function() {
+        return view('customer.partials.orders');
+    })->name('customer.order'); // kung yan ang ginagamit sa link mo
+
 });
 

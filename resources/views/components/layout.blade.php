@@ -73,7 +73,7 @@
   </header>
 
 
-  <main class="h-full p-5 rounded shadow-sm">
+  <main class="min-h-screen max-w-7xl mx-auto relative p-5 flex-1">
     
     {{ $slot }}
     
@@ -93,7 +93,7 @@
     </div>
 </div>
 
-<footer class="bg-amber-400 py-10">
+<footer class="bg-amber-400 py-10 mt-auto">
   <div class="max-w-6xl mx-auto grid md:grid-cols-3 mb-2 gap-6">
 
     <div>
