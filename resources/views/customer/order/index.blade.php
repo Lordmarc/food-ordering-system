@@ -1,7 +1,7 @@
 <x-layout>
 <div id="order-list" data-orders-url="{{ route('customer.fetch.orders') }}"></div>
 
-<div class="container mx-auto flex gap-3
+<div class=" mx-auto flex gap-3
 ">
 
 <div class="flex-1 ">
@@ -13,11 +13,11 @@
         <a href="" class="sidebar-link cursor-pointer hover:text-amber-500">Change Password</a>
       </div>
 
-    <a href="{{ route('customer.order') }}" class="cursor-pointer hover:text-amber-500">My Order</a>
+    <a href="{{ route('customer.orders') }}" class="sidebar-link cursor-pointer hover:text-amber-500">My Order</a>
     </div>
 </div>
 
-<div id="content" class="order-status flex-3 p-2 h-full">
+<div id="content" class="order-status flex-3 p-2 ">
   <div class="table-layout w-full flex flex-col gap-2">
     <div class="heading bg-white flex text-center shadow-sm rounded-sm">
       <div class="flex-1"><button class="order-status-button bg-amber-500 hover:bg-none" id="all-orders">All</button></div>
@@ -27,7 +27,7 @@
       <div class="flex-1"><button class="order-status-button hover:bg-gray-200" id="completed-orders">Completed</button></div>
     </div>
 
-    <div id="orders-container" class="all-item flex flex-col gap-2">
+    <div id="orders-container" class="all-item h-full flex flex-col gap-2">
       @foreach($orders as $order)
         <div class="bg-white p-4">
           @foreach($order->items as $item)

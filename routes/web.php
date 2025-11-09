@@ -47,9 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/order', [OrderController::class, 'customerOrder'])->name('customer.order');
     Route::get('/customer/orderlist', [OrderController::class, 'fetchOrders'])->name('customer.fetch.orders');
     Route::get('/customer/profile', [ProfileController::class, 'index'])->name('customer.profile');
-    Route::get('/customer/profile', function() {
-        return view('customer.partials.profile');
-    })->name('customer.profile');
+    Route::get('/customer/orders', [OrderController::class, 'customerOrderPartial'])->name('customer.orders');
+    Route::post('/customer/profile/{user}', [ProfileController::class, 'update'])->name('customer.profile.update');
+    // Route::get('/customer/profile', function() {
+    //     return view('customer.partials.profile');
+    // })->name('customer.profile');
 
     Route::get('/customer/address', function() {
         return view('customer.partials.address');
@@ -59,9 +61,9 @@ Route::middleware('auth')->group(function () {
         return view('customer.partials.password');
     })->name('customer.password');
 
-    Route::get('/customer/orders', function() {
-        return view('customer.partials.orders');
-    })->name('customer.order'); // kung yan ang ginagamit sa link mo
+    // Route::get('/customer/orders', function() {
+    //     return view('customer.partials.orders');
+    // })->name('customer.partials.order');
 
 });
 

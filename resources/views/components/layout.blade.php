@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   @vite(['resources/css/app.css', 'resources/js/index.js', 'resources/js/customer/profile.js', 'resources/js/customer/order.js'])
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col min-h-screen">
   <header class="bg-white shadow p-4">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
   <div class="bg-slate-200 p-2">
@@ -73,7 +73,7 @@
   </header>
 
 
-  <main class="min-h-screen max-w-7xl mx-auto relative p-5 flex-1">
+  <main class="w-full max-w-7xl mx-auto relative p-5 flex-1">
     
     {{ $slot }}
     
@@ -93,7 +93,7 @@
     </div>
 </div>
 
-<footer class="bg-amber-400 py-10 mt-auto">
+<footer class="bg-amber-400 py-10 mt-auto h-auto">
   <div class="max-w-6xl mx-auto grid md:grid-cols-3 mb-2 gap-6">
 
     <div>

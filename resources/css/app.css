@@ -12,15 +12,16 @@
 }
 
 .item-nav {
-    @apply flex flex-col justify-between  px-2 py-1 ;
+    @apply flex flex-col justify-between  px-2 py-1;
 }
 
 /* Main section Admin */
 
-.form{
+.form {
     @apply max-w-sm h-[450px] p-5  rounded-md flex flex-col justify-between shadow-lg;
 
-    input,select {
+    input,
+    select {
         @apply w-full block my-2 px-2 py-1 rounded shadow-md text-gray-500;
     }
 
@@ -35,13 +36,11 @@
     a {
         @apply px-2 block hover:bg-slate-300 rounded mr-auto;
     }
-
 }
-
 
 /* Main section Customer*/
 .categories {
-   @apply px-3 py-2 text-center bg-slate-200 rounded-md cursor-pointer shrink-0 flex-grow;
+    @apply px-3 py-2 text-center bg-slate-200 rounded-md cursor-pointer shrink-0 flex-grow;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -50,9 +49,9 @@
 
 .menu-items {
     @apply grid grid-cols-5 gap-5 p-2;
-    
+
     h3 {
-        @apply font-bold text-xl mb-10
+        @apply font-bold text-xl mb-10;
     }
 
     .add-to-cart {
@@ -62,14 +61,15 @@
 
 /* Cart style */
 
-.minusQty, .addQty {
-    @apply bg-amber-500 p-2 cursor-pointer transform ease-in-out duration-75 hover:bg-amber-600 text-white rounded
+.minusQty,
+.addQty {
+    @apply bg-amber-500 p-2 cursor-pointer transform ease-in-out duration-75 hover:bg-amber-600 text-white rounded;
 }
 
 /* Order Style */
 
 .btn-tab {
-    @apply rounded px-3 py-2 cursor-pointer w-52
+    @apply rounded px-3 py-2 cursor-pointer w-52;
 }
 
 /* Profile Setting Style */
@@ -79,11 +79,11 @@
 }
 
 .arrow-up {
-    @apply w-0 h-0 border-l-[10px] border-r-[10px] border-b-[10px] border-l-transparent border-r-transparent border-b-amber-500 mx-auto ;
+    @apply w-0 h-0 border-l-[10px] border-r-[10px] border-b-[10px] border-l-transparent border-r-transparent border-b-amber-500 mx-auto;
 }
 
 .settings {
-    @apply flex flex-col bg-amber-500 py-4 w-40
+    @apply flex flex-col bg-amber-500 py-4 w-40;
 }
 
 .profile-links {
@@ -92,4 +92,41 @@
 
 .order-status-button {
     @apply w-full h-full px-2 py-3 cursor-pointer transition-all ease-in-out duration-75;
+}
+
+.profile-input-container {
+    @apply flex gap-2 items-center mb-4;
+
+    label{
+        @apply w-16 text-gray-500
+    }
+
+    input {
+        @apply flex-1 max-w-64
+    }
+
+    p {
+        @apply w-16 text-gray-500
+    }
+}
+
+.profile-input {
+    @apply outline-0 border border-gray-300 rounded px-1 py-2 flex ;
+
+}
+
+.gender-btn {
+    @apply flex gap-2 items-center mb-4;
+    
+    p {
+        @apply w-16 text-gray-500
+    }
+
+    label{
+        @apply w-16 text-gray-800
+    }
+
+    .radio-btn {
+        @apply flex gap-1
+    }
 }

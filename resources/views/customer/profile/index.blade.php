@@ -12,7 +12,7 @@
         <a href="" class="cursor-pointer hover:text-amber-500">Change Password</a>
       </div>
 
-    <a href="{{ route('customer.order') }}" class="cursor-pointer hover:text-amber-500">My Order</a>
+    <a href="{{ route('customer.orders') }}" class="cursor-pointer hover:text-amber-500">My Order</a>
     </div>
 </div>
   <div id="content" class="w-3/4 p-2 h-full bg-white">

@@ -83,6 +83,18 @@ class OrderController extends Controller
         return view('customer.order.index', compact('orders', 'pendingOrders', 'preparingOrders', 'readyOrders', 'completedOrders'));
     }
 
+    public function customerOrderPartial()
+    {
+        $user = auth()->user();
+        $orders = $user->orders()->with('items.menuItem')->orderBy('created_at', 'desc')->get();
+        $pendingOrders = $user->orders()->where('status', 'pending')->orderBy('created_at', 'desc')->get();
+        $preparingOrders = $user->orders()->where('status', 'preparing')->orderBy('created_at', 'desc')->get();
+        $readyOrders = $user->orders()->where('status', 'ready')->orderBy('created_at', 'desc')->get();
+        $completedOrders = $user->orders()->where('status', 'completed')->orderBy('created_at', 'desc')->get();
+
+        return view('customer.partials.orders', compact('orders', 'pendingOrders', 'preparingOrders', 'readyOrders', 'completedOrders'));
+    }
+
     public function fetchOrders()
     {
         $user = auth()->user();
