@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'role',
         'gender',
+        'address',
+        'phone_number',
     ];
 
     /**
@@ -51,5 +53,10 @@ class User extends Authenticatable
     public function orders()
     {
       return  $this->hasMany(Order::class);
+    }
+
+    public function address()
+    {
+        return $this->hasMany(Address::class);
     }
 }

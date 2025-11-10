@@ -1,26 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ----------- PROFILE DROPDOWN -----------
   const wrapper = document.getElementById('profile-wrapper');
   const dropdown = document.getElementById('profile-dropdown');
 
-  // Profile elements
+  if (wrapper && dropdown) {
+    wrapper.addEventListener('mouseenter', () => {
+      dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      dropdown.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      dropdown.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+      dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+    });
+  }
 
   const profileBtn = document.getElementById('profile-btn');
   const profileToggle = document.getElementById('profile-toggle');
 
-  wrapper.addEventListener('mouseenter', () => {
-    dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-    dropdown.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
-  });
+  if (profileBtn && profileToggle) {
+    profileBtn.addEventListener('click', () => {
+      profileToggle.classList.toggle('hidden');
+    });
+  }
 
-  wrapper.addEventListener('mouseleave', () => {
-      dropdown.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
-      dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-  });
+  // ----------- ADDRESS SECTION -----------
+  const overlay = document.getElementById('overlay');
+  const addressForm = document.getElementById('address-form');
 
-  profileBtn.addEventListener('click', (e) => {
-   
-    profileToggle.classList.toggle('hidden');
-  })
+ document.addEventListener('click', (e) => {
+  const overlay = document.getElementById('overlay');
+  const addressForm = document.getElementById('address-form');
 
+  // ✅ Only run if both exist
+  if (!overlay || !addressForm) return;
 
-})
+  if (e.target && e.target.id === 'add-address-btn'){
+    overlay.classList.toggle('hidden');
+    addressForm.classList.toggle('hidden');
+  }
+});
+
+});

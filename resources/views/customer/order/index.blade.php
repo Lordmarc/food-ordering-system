@@ -9,7 +9,7 @@
       <a href="{{ route('customer.profile') }}" id="profile-btn" class="sidebar-link cursor-pointer hover:text-amber-500">My Account</a>
       <div id="profile-toggle" class=" flex flex-col ml-3 gap-2 hidden">
         <a href="{{ route('customer.profile') }}" class="sidebar-link cursor-pointer hover:text-amber-500">Profile</a>
-        <a href="" class="sidebar-link cursor-pointer hover:text-amber-500">Address</a>
+        <a href="{{ route('customer.address') }}" class="sidebar-link cursor-pointer hover:text-amber-500">Address</a>
         <a href="" class="sidebar-link cursor-pointer hover:text-amber-500">Change Password</a>
       </div>
 

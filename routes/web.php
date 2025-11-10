@@ -7,10 +7,24 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $message = '';
+
+    if (!Cache::has('last_schedule_run')) {
+        Artisan::call('schedule:run');
+        Cache::put('last_schedule_run', true, now()->addHour());
+        $message = '✅ Schedule ran successfully at ' . now();
+    } else {
+        $message = '⏱ Schedule already ran within the last hour.';
+    }
+
+    return view('welcome', ['scheduleMessage' => $message]);
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -46,16 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [OrderController::class, 'store'])->name('customer.store');
     Route::get('/customer/order', [OrderController::class, 'customerOrder'])->name('customer.order');
     Route::get('/customer/orderlist', [OrderController::class, 'fetchOrders'])->name('customer.fetch.orders');
-    Route::get('/customer/profile', [ProfileController::class, 'index'])->name('customer.profile');
     Route::get('/customer/orders', [OrderController::class, 'customerOrderPartial'])->name('customer.orders');
-    Route::post('/customer/profile/{user}', [ProfileController::class, 'update'])->name('customer.profile.update');
-    // Route::get('/customer/profile', function() {
-    //     return view('customer.partials.profile');
-    // })->name('customer.profile');
+    Route::get('/customer/profile', [ProfileController::class, 'index'])->name('customer.profile');
+    Route::get('/customer/address', [ProfileController::class, 'address'])->name('customer.address');
+    Route::get('/customer/address/create', [ProfileController::class, 'storeAddress'])->name('customer.store.address');
+    Route::post('/customer/profile', [ProfileController::class, 'update'])->name('customer.profile.update');
 
-    Route::get('/customer/address', function() {
-        return view('customer.partials.address');
-    })->name('customer.address');
 
     Route::get('/customer/password', function() {
         return view('customer.partials.password');
@@ -66,4 +76,5 @@ Route::middleware('auth')->group(function () {
     // })->name('customer.partials.order');
 
 });
+
 

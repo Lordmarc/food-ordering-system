@@ -273,5 +273,11 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+@if(isset($scheduleMessage))
+    <div style="padding:10px; background:#d1fae5; color:#065f46; margin-bottom:10px;">
+        {{ $scheduleMessage }}
+    </div>
+@endif
+
     </body>
 </html>

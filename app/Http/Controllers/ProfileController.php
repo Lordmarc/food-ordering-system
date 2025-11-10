@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Address;
 
 class ProfileController extends Controller
 {
@@ -18,15 +19,40 @@ class ProfileController extends Controller
         return view('customer.partials.profile', compact('user', 'mask'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         $validated = $request->validate([
             'name' => 'nullable|string|min:4|max:255',
             'gender' => 'nullable|string|in:Male,Female'
         ]);
 
+        $user = auth()->user();
         $user->update($validated);
         
-        return redirect()->route('customer.profile.update')->with('success', 'Updated Successfully');
+        return redirect()->back()->with('success', 'Updated Successfully');
+    }
+
+    public function address()
+    {
+        $user = auth()->user();
+
+
+        return view('customer.partials.address', compact('user'));
+    }
+
+    public function storeAddress(Request $request)
+    {
+        $validated = $request->validate([
+            'region' => 'required|string',
+            'province' => 'required|string',
+            'city' => 'required|string',
+            'barangay' => 'required|string',
+            'postal_code' => 'required|string',
+            'address_name' => 'required|string'
+        ]);
+
+        Address::store($validated);
+
+        return redirect()->route('')->with('success', 'Address Added Successful!');
     }
 }

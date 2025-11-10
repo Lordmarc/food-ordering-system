@@ -4,7 +4,7 @@
 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
 <div class="w-full ">
-  <form action="{{ route('customer.profile.update', $user) }}" class="max-w-lg mx-auto p-2" method="POST">
+  <form action="{{ route('customer.profile.update') }}" class="max-w-lg mx-auto p-2" method="POST">
   @csrf
 
     <div class="profile-input-container">
