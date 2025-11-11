@@ -15,7 +15,9 @@ class Address extends Model
         'address_name'
     ];
 
-    public function users()
+    protected $table = 'address';
+
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

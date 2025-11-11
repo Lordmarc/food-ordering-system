@@ -1,27 +1,48 @@
 <x-layout>
 
 <div class="container mx-auto flex flex-row gap-3 h-full">
+<x-sidebar-link/>
+<div class="flex-2 w-full flex justify-between p-2 items-center">
+<h3>My Profile</h3>
+<hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
-<div class="flex-1 ">
+<div class="w-full ">
+  <form action="{{ route('customer.profile.update') }}" class="max-w-lg mx-auto p-2" method="POST">
+  @csrf
 
-    <div class="flex flex-col gap-2 text-slate-500 font-semibold">
-      <a href="{{ route('customer.profile') }}" id="profile-btn" class="cursor-pointer hover:text-amber-500">My Account</a>
-      <div id="profile-toggle" class=" flex flex-col ml-3 gap-2 hidden">
-        <a href="" class="cursor-pointer hover:text-amber-500">Profile</a>
-        <a href="" class="cursor-pointer hover:text-amber-500">Address</a>
-        <a href="" class="cursor-pointer hover:text-amber-500">Change Password</a>
+    <div class="profile-input-container">
+      <label for="name">Name</label>
+      <input class="profile-input" type="text" name="name" id="name" value="{{$user->name}}">
+
+    </div>
+
+    <div class="profile-input-container">
+      <label for="email">Email</label>
+      <span>{{ $mask }}</span>
+    </div>
+
+    <div class="gender-btn">
+      <p>Gender</p>
+      <div class="radio-btn">
+        
+        <input type="radio" name="gender" id="male" value="Male" {{ $user->gender === "Male" ? 'checked' : '' }}>
+        <label for="male" >Male</label>
       </div>
 
-    <a href="{{ route('customer.orders') }}" class="cursor-pointer hover:text-amber-500">My Order</a>
-    </div>
-</div>
-  <div id="content" class="w-3/4 p-2 h-full bg-white">
-    <div>
-      <h3>My Profile</h3>
-    </div>
-    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-  </div>
+      <div class="radio-btn">
 
+        <input type="radio" name="gender" id="female" value="Female" {{ $user->gender === "Female" ? 'checked' : '' }}>
+        
+
+        <label for="female">Female</label>
+      </div>
+
+    </div>
+
+    <button type="submit" class="bg-amber-500 p-2 w-26 rounded-sm cursor-pointer text-white">Save</button>
+  </form>
+</div>
+</div>
 
 
 </div>

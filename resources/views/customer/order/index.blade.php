@@ -1,21 +1,9 @@
 <x-layout>
 <div id="order-list" data-orders-url="{{ route('customer.fetch.orders') }}"></div>
 
-<div class=" mx-auto flex gap-3
-">
+<div class=" mx-auto flex gap-3">
 
-<div class="flex-1 ">
-    <div class="flex flex-col gap-2 text-slate-500 font-semibold">
-      <a href="{{ route('customer.profile') }}" id="profile-btn" class="sidebar-link cursor-pointer hover:text-amber-500">My Account</a>
-      <div id="profile-toggle" class=" flex flex-col ml-3 gap-2 hidden">
-        <a href="{{ route('customer.profile') }}" class="sidebar-link cursor-pointer hover:text-amber-500">Profile</a>
-        <a href="{{ route('customer.address') }}" class="sidebar-link cursor-pointer hover:text-amber-500">Address</a>
-        <a href="" class="sidebar-link cursor-pointer hover:text-amber-500">Change Password</a>
-      </div>
-
-    <a href="{{ route('customer.orders') }}" class="sidebar-link cursor-pointer hover:text-amber-500">My Order</a>
-    </div>
-</div>
+<x-sidebar-link/>
 
 <div id="content" class="order-status flex-3 p-2 ">
   <div class="table-layout w-full flex flex-col gap-2">

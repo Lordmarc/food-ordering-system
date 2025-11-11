@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $email = $user->email;
         list($name, $domain) = explode('@', $email);
         $mask = substr($name, 0, 2) . str_repeat('*', strlen($name) - 2) . '@' . $domain;
-        return view('customer.partials.profile', compact('user', 'mask'));
+        return view('customer.profile.index', compact('user', 'mask'));
     }
 
     public function update(Request $request)
@@ -35,12 +35,12 @@ class ProfileController extends Controller
     public function address()
     {
         $user = auth()->user();
+        $addresses = auth()->user()->addresses()->orderBy('created_at', 'desc')->get();
 
-
-        return view('customer.partials.address', compact('user'));
+        return view('customer.address.address', compact('user','addresses'));
     }
 
-    public function storeAddress(Request $request)
+    public function createAddress(Request $request)
     {
         $validated = $request->validate([
             'region' => 'required|string',
@@ -51,8 +51,9 @@ class ProfileController extends Controller
             'address_name' => 'required|string'
         ]);
 
-        Address::store($validated);
+        $user = auth()->user();
+        $user->addresses()->create($validated);
 
-        return redirect()->route('')->with('success', 'Address Added Successful!');
+        return redirect()->route('customer.address')->with('success', 'Added New Address Succesfully!');
     }
 }

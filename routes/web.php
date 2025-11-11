@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/orders', [OrderController::class, 'customerOrderPartial'])->name('customer.orders');
     Route::get('/customer/profile', [ProfileController::class, 'index'])->name('customer.profile');
     Route::get('/customer/address', [ProfileController::class, 'address'])->name('customer.address');
-    Route::get('/customer/address/create', [ProfileController::class, 'storeAddress'])->name('customer.store.address');
+    Route::post('/customer/address/create', [ProfileController::class, 'createAddress'])->name('customer.store.address');
     Route::post('/customer/profile', [ProfileController::class, 'update'])->name('customer.profile.update');
 
 

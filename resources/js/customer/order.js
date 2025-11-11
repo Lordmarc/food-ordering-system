@@ -114,20 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchOrdersList(currentStatus);
     }
 
-    // Sidebar AJAX navigation
-    document.querySelectorAll(".sidebar-link").forEach((link) => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const url = this.getAttribute("href");
-            fetch(url)
-                .then((res) => res.text())
-                .then((html) => {
-                    content.innerHTML = html;
-                    initOrderScript(); // 🔹 Reinitialize buttons in new partial
-                })
-                .catch((err) => console.error(err));
-        });
-    });
 
     // Initial load for page
     initOrderScript();

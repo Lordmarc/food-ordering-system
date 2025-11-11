@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------- PROFILE DROPDOWN -----------
   const wrapper = document.getElementById('profile-wrapper');
   const dropdown = document.getElementById('profile-dropdown');
+  const profileBtn = document.getElementById('profile-btn');
+  const profileToggle = document.getElementById('profile-toggle');
 
   if (wrapper && dropdown) {
     wrapper.addEventListener('mouseenter', () => {
@@ -16,9 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const profileBtn = document.getElementById('profile-btn');
-  const profileToggle = document.getElementById('profile-toggle');
-
   if (profileBtn && profileToggle) {
     profileBtn.addEventListener('click', () => {
       profileToggle.classList.toggle('hidden');
@@ -26,20 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ----------- ADDRESS SECTION -----------
+  const addressBtn = document.getElementById('address-btn');
   const overlay = document.getElementById('overlay');
   const addressForm = document.getElementById('address-form');
 
- document.addEventListener('click', (e) => {
-  const overlay = document.getElementById('overlay');
-  const addressForm = document.getElementById('address-form');
-
-  // ✅ Only run if both exist
-  if (!overlay || !addressForm) return;
-
-  if (e.target && e.target.id === 'add-address-btn'){
+  addressBtn.addEventListener('click', () => {
     overlay.classList.toggle('hidden');
     addressForm.classList.toggle('hidden');
-  }
-});
 
+  
+  });
+  overlay.addEventListener('click', () => {
+    overlay.classList.toggle('hidden');
+    addressForm.classList.toggle('hidden');
+  })
 });
