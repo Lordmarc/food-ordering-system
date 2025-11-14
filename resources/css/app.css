@@ -9,7 +9,27 @@
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+
 }
+
+@keyframes bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(25%); /* adjust distance */
+  }
+}
+
+.animate-bounce-x {
+  animation: bounce-x 2s infinite;
+}
+
+.hover-bounce-x:hover{
+    animation: bounce-x 2s infinite;
+}
+
+
 
 .item-nav {
     @apply flex flex-col justify-between  px-2 py-1;
