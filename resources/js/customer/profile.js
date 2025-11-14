@@ -29,14 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('overlay');
   const addressForm = document.getElementById('address-form');
 
-  addressBtn.addEventListener('click', () => {
+  if(addressBtn && overlay) {
+      addressBtn.addEventListener('click', () => {
     overlay.classList.toggle('hidden');
     addressForm.classList.toggle('hidden');
 
+    });
   
-  });
+
+
   overlay.addEventListener('click', () => {
     overlay.classList.toggle('hidden');
     addressForm.classList.toggle('hidden');
   })
+
+  }
+
 });

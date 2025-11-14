@@ -2,7 +2,8 @@
 
 <div class="container mx-auto flex flex-row gap-3 h-full">
 <x-sidebar-link/>
-<div class="flex-2 w-full flex justify-between p-2 items-center">
+<div class="flex-2 bg-white rounded p-4">
+<div class="p-2 items-">
 <h3>My Profile</h3>
 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
@@ -43,7 +44,7 @@
   </form>
 </div>
 </div>
-
+</div>
 
 </div>
 </x-layout>

@@ -65,16 +65,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/address', [ProfileController::class, 'address'])->name('customer.address');
     Route::post('/customer/address/create', [ProfileController::class, 'createAddress'])->name('customer.store.address');
     Route::post('/customer/profile', [ProfileController::class, 'update'])->name('customer.profile.update');
-
-
-    Route::get('/customer/password', function() {
-        return view('customer.partials.password');
-    })->name('customer.password');
-
-    // Route::get('/customer/orders', function() {
-    //     return view('customer.partials.orders');
-    // })->name('customer.partials.order');
-
+    Route::get('/customer/verify', [ProfileController::class, 'verify'])->name('customer.verify');
+    Route::post('customer/verify', [ProfileController::class, 'verifyPassword'])->name('customer.verify.password');
+    Route::middleware('password.verified')->group(function() {
+        Route::get('customer/change-password', [ProfileController::class, 'changePassword'])->name('customer.changepassword');
+    });
+   
 });
 
 

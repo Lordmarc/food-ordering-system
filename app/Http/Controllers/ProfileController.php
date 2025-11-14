@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -55,5 +56,33 @@ class ProfileController extends Controller
         $user->addresses()->create($validated);
 
         return redirect()->route('customer.address')->with('success', 'Added New Address Succesfully!');
+    }
+
+    public function verify()
+    {
+        return view('customer.password.verify');
+    }
+
+    public function verifyPassword(Request $request)
+    {
+        $validated = $request->validate([
+            'password' => 'required|string|min:8',
+        ]);
+
+        $user = auth()->user();
+
+        if(Hash::check($validated['password'], $user->password)){
+            return view('customer.password.changepassword');
+        } else {
+            return back()->with('password', 'Incorrect Password');
+        }
+
+    }
+
+    public function changePassword()
+    {
+        $userPassword = auth()->user();
+
+        return view('customer.password.changepassword', compact('userPassword'));
     }
 }

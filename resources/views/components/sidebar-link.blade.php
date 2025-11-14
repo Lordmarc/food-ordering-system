@@ -5,7 +5,7 @@
       <div id="profile-toggle" class=" flex flex-col ml-3 gap-2 hidden">
         <a href="{{ route('customer.profile') }}" class="cursor-pointer hover:text-amber-500">Profile</a>
         <a href="{{ route('customer.address') }}" class="cursor-pointer hover:text-amber-500">Address</a>
-        <a href="" class="cursor-pointer hover:text-amber-500">Change Password</a>
+        <a href="{{ route('customer.verify') }}" class="cursor-pointer hover:text-amber-500">Change Password</a>
       </div>
 
     <a href="{{ route('customer.orders') }}" class="cursor-pointer hover:text-amber-500">My Order</a>

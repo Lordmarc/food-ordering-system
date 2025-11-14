@@ -130,3 +130,14 @@
         @apply flex gap-1
     }
 }
+
+
+/* CHANGE PASSWORD SECTION */
+
+.new-password {
+    @apply w-full block border border-gray-300 p-2 rounded-sm outline-amber-500 mb-4;
+}
+
+.change-password {
+    @apply bg-amber-500 text-white w-full p-2 rounded
+}
