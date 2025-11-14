@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [OrderController::class, 'store'])->name('customer.store');
     Route::get('/customer/order', [OrderController::class, 'customerOrder'])->name('customer.order');
     Route::get('/customer/orderlist', [OrderController::class, 'fetchOrders'])->name('customer.fetch.orders');
-    Route::get('/customer/orders', [OrderController::class, 'customerOrderPartial'])->name('customer.orders');
+    Route::get('/customer/orders', [OrderController::class, 'customerOrder'])->name('customer.orders');
     Route::get('/customer/profile', [ProfileController::class, 'index'])->name('customer.profile');
     Route::get('/customer/address', [ProfileController::class, 'address'])->name('customer.address');
     Route::post('/customer/address/create', [ProfileController::class, 'createAddress'])->name('customer.store.address');

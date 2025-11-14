@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ------------ VERIFY PASSWORD ------------
+  const showPassword = document.querySelector('.show-password');
+  const verifyPassword = document.querySelector('.verify-password');
+
+  if (showPassword && verifyPassword) {
+    showPassword.addEventListener('click', () => {
+      if(verifyPassword.type === 'password') {
+        verifyPassword.type = 'text'
+        showPassword.innerHTML = `<i class="fa-solid fa-eye-slash text-slate-500"></i>`
+      }else {
+        verifyPassword.type = 'password'
+        showPassword.innerHTML = `<i class="fa-solid fa-eye text-slate-500"></i>`
+      }
+    })
+  }
   
   // ------------ CHANGE PASSWORD ------------
 
@@ -22,7 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
     })
- 
-  }
+ }
+
+ // ------------ BACK PAGE --------------------
+ const backPage = document.querySelector('.fa-arrow-left-long');
+
+ backPage.addEventListener('click', () => {
+  window.history.back();
+ })
   
 })
